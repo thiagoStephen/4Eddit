@@ -2,7 +2,7 @@ import React from "react";
 import { ContainerForm, ContainerSignUp } from "./signUp_styles";
 
 
-export default function SignUpComponent () {
+export default function SignUp () {
    
     
     const handleInputChange = event => {
