@@ -39,6 +39,7 @@ export default function SignUp () {
                     required
                     onChange={handleInputChange}>
                 </input>
+                <button>Cadastrar</button>
             </ContainerForm>
         </ContainerSignUp>
     )
