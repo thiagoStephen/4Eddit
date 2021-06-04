@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
-import PostDetail from './PostDetail';
+import PostDetail from './PostDetail/PostDetail';
 import labEdiit from '../../Services/labEdiit';
 import LikeCommentContext from '../../Contexts/LikeCommentContext';
 import DisLikeCommentContext from '../../Contexts/DisLikeCommentContext';
