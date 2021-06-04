@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { UseHistory, useHistory } from 'react-router-dom'
 
 export const useForm = (initialValues) => {
-    const [form, setform] = useState(initialValues)
+    const [form, setForm] = useState(initialValues)
 
     const onChange = (name, value) => {
         const newForm = { ...form, [name]: value }
         setForm(newForm)
     }
-    return { form, onchange }
+    return { form, onChange}
 }

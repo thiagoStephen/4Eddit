@@ -12,7 +12,7 @@ export default function Post() {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        getpost();
+        getPost();
     }, []);
 
     const auth = {
@@ -26,61 +26,62 @@ export default function Post() {
             .get(`posts/${params.id}`, auth)
             .then((response) => {
                 setPost(response.data.post);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     };
 
     const likePost = () => {
         let data;
         post.userVoteDirection === 1
-        ? (data = { direction: 0})
-        : (data = { direction: 1});
-    
-    labEdiit.put(`posts/${params.id}/vote`, data, auth)
-    .then((response) => {
-        getPost();
-    });
+            ? (data = { direction: 0 })
+            : (data = { direction: 1 });
+
+        labEdiit.put(`posts/${params.id}/vote`, data, auth).then((response) => {
+            getPost();
+        });
     };
 
     const dislikePost = () => {
         let data;
         post.userVoteDirection === -1
-        ? (data = { direction: 0 })
-        : (data = { direction: -1 });
+            ? (data = { direction: 0 })
+            : (data = { direction: -1 });
 
-    labEdiit.put(`posts/${params.id}/vote`, data, auth)
-    .then((response) => {
-        getPost();
-    });
+        labEdiit.put(`posts/${params.id}/vote`, data, auth).then((response) => {
+            getPost();
+        });
     };
 
     const likeComment = (comment) => {
         let data;
         comment.userVoteDirection === 1
-        ? (data = { direction: 0 })
-        : (data = { direction: 1 });
-    labEdiit
-    .put(`posts/${params.id}/comment/${comment.id}/vote`, data, auth)
-    .then((response) => {
-        getPost();
-    });
+            ? (data = { direction: 0 })
+            : (data = { direction: 1 });
+        labEdiit
+            .put(`posts/${params.id}/comment/${comment.id}/vote`, data, auth)
+            .then((response) => {
+                getPost();
+            });
     };
 
     const dislikeComment = (comment) => {
         let data;
         comment.userVoteDirection === -1
-        ? (data = { direction: 0 })
-        : (data = { direction: -1 });
+            ? (data = { direction: 0 })
+            : (data = { direction: -1 });
 
-    labEdiit
-    .put(`posts/${params.id}/comment/${comment.id}/vote`, data, auth)
-    .then((response) => {
-        getPost();
-    });
+        labEdiit
+            .put(`posts/${params.id}/comment/${comment.id}/vote`, data, auth)
+            .then((response) => {
+                getPost();
+            });
     };
 
     const onChangeComment = (event) => {
         setInputValue(event.target.value);
-        console.log(input.value);
+        console.log(inputValue);
     };
 
     const submitComment = () => {
@@ -100,8 +101,8 @@ export default function Post() {
 
     return (
         <LikeCommentContext.Provider value={likeComment}>
-            <DisLikeCommentContext.provider value={dislikeComment}>
-                {post !== undefined && (
+          <DisLikeCommentContext.Provider value={dislikeComment}>
+            {post !== undefined && (
                     <PostDetail
                         key={post.id}
                         post={post}
@@ -112,9 +113,8 @@ export default function Post() {
                         inputValue={inputValue}
                         dislikeComment={dislikeComment}
                     />
-                )}
-
-            </DisLikeCommentContext.provider>
+            )}
+          </DisLikeCommentContext.Provider>
         </LikeCommentContext.Provider>
     );
 }
